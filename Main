@@ -1,0 +1,84 @@
+import java.util.*;
+import java.text.*;
+
+class Main {
+  public static void main(String[] args) {
+    
+// Instantiated Variables
+    Movies BojHor = new Movies("Bojack Horseman", "dark comedy", "Raphael Bob-Waksberg", "TV-MA", 2014, 8.8, "y");
+
+    Movies SixFeeUnd = new Movies("Six Feet Under", "dramedy", "Peter Krause", "TV-MA", 2001, 8.7, "y");
+
+    Movies AttOnTit = new Movies("Attack On Titan", "action", "Hajime Isayama", "TV-MA", 2013, 9.1, "y"); 
+
+    Movies BetCalSau = new Movies("Better Call Saul", "action", "Vince Gilligan", "TV-MA", 2015, 9.0, "y");
+
+    Movies OnePie = new Movies("One Piece", "adventure", "Eiichiro Oda", "TV-MA", 1999, 8.9, "n");
+
+    Movies TheBoy = new Movies("The Boys", "action", "Kyle Kripke", "TV-MA", 2019, 8.7, "n");
+
+    Movies You = new Movies("You", "thriller", "Greg Berlanti", "TV-MA", 2018, 7.7, "y");
+
+    Movies YouLieInApr = new Movies("You Lie In April", "Romance", "Naoshi Arakawa", "TV-MA", 2014, 8.5, "y");
+
+    Movies Sev = new Movies("Severance", "thriller", "Dan Erickson", "TV-MA", 2018, 8.7, "y");
+
+    Movies TheLasOfUs = new Movies("The Last of Us", "thriller", "Craig Mazin", "TV-MA", 2023, 8.8, "y"); 
+
+    Movies Che = new Movies("Chernobyl", "thriller", "Craig Mazin", "TV-MA", 2019, 9.3, "y");
+
+    Movies Vee = new Movies("Veep", "dark comedy", "Armando Innauchi", "TV-MA", 2013, 8.4, "y");
+
+    Movies ArrDev = new Movies("Arrested Development", "comedy", "Mitchel Hurwitz", "TV-MA", 2003, 8.7, "y");
+
+    Movies WilAndGra = new Movies("Will and Grace", "comedy", "David Kohan", "TV-MA", 1998, 7.4, "y");
+
+    Movies TheBigBanThe = new Movies("The Big Bang Theory", "comedy", "Chuck Loree", "TV-14", 2007, 8.2, "n");
+
+    Movies ModFam = new Movies("Modern Family", "comedy", "Steven Levitan", "TV-14", 2009, 8.5, "y");
+
+    Movies Nar = new Movies("Naruto", "action", "Masashi Kishimoto", "TV-14", 2002, 8.4, "n");
+
+    Movies GraFal = new Movies("Gravity Falls", "action", "Alex Hirsch", "pg", 2012, 8.9, "y");
+
+    Movies TAWOG = new Movies("The Amazing World of Gumball", "comedy", "Ben Boquelet", "pg", 2011, 8.3, "y");
+
+    Movies AdvTim = new Movies("Adventure Time", "adventure", "Pendleton Ward", "pg", 2010, 8.6, "y");
+
+    Movies SwoArtOnl = new Movies("Sword Art Online", "adventure", "Reki Kawahara", "adventure", 2012, 7.5, "n");
+
+    Movies Oza = new Movies("Ozark", "thriller", "Ben Dubuque", "Tv-MA", 2017, 8.5, "y");
+
+    Movies RomKil = new Movies("Romantic Killer", "romance", "Wataru Momose", "Tv-14", 2022, 7.6, "y");
+
+    Movies Com = new Movies("Community", "comedy", "Dan Harmon", "Tv-14", 2009, 8.5, "y");
+
+    Movies BraBad = new Movies("Breaking Bad", "thriller", "Vince Gilligan", "Tv-MA", 2008, 9.5, "y");
+    
+    Movies TheQueGam = new Movies("The Queen's Gambit", "dramedy", "Scott Frank", "Tv-MA", 2020, 8.5, "y");
+
+    Movies ScaRei = new Movies("Scavenger's Reign", "adventure", "Joe Bennett", "Tv-MA", 2020, 8.8, "y");
+   
+    Movies WanVis = new Movies("Wanda Vision", "comedy", "Jac Schaeffer", "Pg", 2021, 7.9, "y");
+
+    
+
+    // End of Instantiated Variables
+
+
+    System.out.println("Welcome to the Tv Shows I have seen. A reccomendation or several will be made depending on what you are looking for. \nWARNING: \n*This list is incomplete but all information contained is completely accurate.*");
+
+  List<Movies> allTv = Arrays.asList(BojHor, SixFeeUnd, AttOnTit, BetCalSau, OnePie, TheBoy, You, YouLieInApr, Sev, TheLasOfUs, Che, Vee, ArrDev, WilAndGra, TheBigBanThe, ModFam, Nar, GraFal, TAWOG, AdvTim, SwoArtOnl, Oza, RomKil, Com, BraBad, TheQueGam, ScaRei, WanVis);
+
+    Algorithm.questionaire();
+    
+    for(Movies tvShow : allTv){
+      String ans = Algorithm.battleAgainstATrueAlgorithm(tvShow.getAgeRatings(), tvShow.getGenres(), tvShow.getYear(), tvShow.getImdbRating());
+      if(ans.equals("y")){
+        System.out.println("\n" + tvShow.toString());
+     }
+    }
+    
+  }
+}
+
