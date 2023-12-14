@@ -1,0 +1,282 @@
+import java.util.Scanner;
+import java.text.*;
+
+class Algorithm{
+
+  // User Input vars
+  
+  private static String   uAgeRating = "";
+  private static String   uGenre = "";
+  private static int      uMinYear = 0;
+  private static int      uMaxYear = 0;
+  private static double   uImdbRating = 0.0;
+
+  // End of User Input vars
+
+  public static void questionaire(){
+
+    uAgeRating = AgeRating();
+    uGenre = Genres();
+    uMinYear = MinYear();
+    uMaxYear = MaxYear();
+    uImdbRating = Imdb();
+    
+  }
+  
+  public static String battleAgainstATrueAlgorithm(String ageRating, String genre, int year, double ImdbRating){ //The most important part. This is what is actually used to make the reccomendation based on user inputs
+
+    //Name is just a reference to help me find it faster. Pretend it just says algorithm
+
+    if(uAgeRating.equalsIgnoreCase(ageRating) && uGenre.equalsIgnoreCase(genre) && uMinYear <= year && year <= uMaxYear && uImdbRating <= ImdbRating){
+    
+    return "y";
+      
+    }
+
+    return "n";
+    
+    
+  }
+  
+  // Brain Methods
+
+
+      // Main Brains
+
+  public static String AgeRating(){ //Gets the age rating from the user
+
+    Scanner scan = new Scanner(System.in); // Sets up Scanner
+
+    String complete = "n"; //Tells the program when to stop asking
+    String ans = ""; // What the user wants from the
+
+    while(!(complete.equalsIgnoreCase("y"))){ //Meant to repeat until the user is happy with their decision
+
+      System.out.println("\n\nTo start, please type your prefered age rating.\n\n-- Enter ? if for a list of age ratings. --");
+
+      ans = scan.nextLine();
+      System.out.println("");
+
+      ans = giveAgeRatings(ans); // If user needs ratings information this gives it
+
+      while(!(ans.equalsIgnoreCase("pg") || ans.equalsIgnoreCase("tv-14") || ans.equalsIgnoreCase("tv-MA"))){
+
+        System.out.println("That is not one of the selected age ratings. Please try again. \n\n-- Enter ? for a list of age ratings. --");
+        ans = scan.nextLine();
+
+        ans = giveAgeRatings(ans);  // If user needs ratings information this gives it
+
+      }
+
+     complete = validateYes("\nAre you happy entering: " + ans + "? Enter [Y] or [N]");
+
+    }
+
+    return ans; // Meant to be used by algorithm
+
+  }
+
+
+  public static String Genres(){ //Gets the genre from the user
+
+    Scanner scan = new Scanner(System.in); // Sets up Scanner
+
+    String complete = "n"; // Tells the program when to stop asking
+    String ans = ""; // What the user wants from the program
+
+    while(!(complete.equalsIgnoreCase("y"))){ // Meant to repeat until the user is fine with their decision
+
+      System.out.println("\n\nNow, please type your prefered genre.\n\n-- Enter ? if for a list of genres. --");
+
+      ans = scan.nextLine();
+
+      ans = giveGenres(ans); // If user needs ratings information this gives it
+
+      while(!(ans.equalsIgnoreCase("Action") || ans.equalsIgnoreCase("Adventure") ||  ans.equalsIgnoreCase("Comedy") || ans.equalsIgnoreCase("Dark Comedy") || ans.equalsIgnoreCase("Dramedy") 
+|| ans.equalsIgnoreCase("Thriller") || ans.equalsIgnoreCase("Romance"))){ // Ensures the user enters a valid genre
+
+        System.out.println("\nThat is not one of the selected genres. Please try again. \n\n-- Enter ? for a list of genres. --");
+        ans = scan.nextLine();
+
+        ans = giveGenres(ans); // If user needs ratings information this gives it
+
+      }
+
+     complete = validateYes("\nAre you happy entering: " + ans + "? Enter [Y] or [N]");
+
+    }
+
+    return ans; // Meant to be used by algorithm
+
+  }
+
+
+  public static int MinYear(){ //Gets the minimum year that the user wants to see in a series
+
+    Scanner scan = new Scanner(System.in); // Sets up Scanner
+
+    String complete = "n"; //Tells the program when to stop asking
+    int ans = 0; // What the user wants from the program
+
+    while(!(complete.equalsIgnoreCase("y"))){ // Meant to repeat until the user is fine with their decision
+
+     ans = validateNumber("\n\nTo start enter the minimum year you wish the series would have been created to fit your liking.\n\n-- Enter 0 if you do not have a preference. --");
+
+     complete = validateYes("\nAre you happy entering: " + ans + "? Enter [Y] or [N]");
+
+    if(ans > 2023){
+      complete = "n";
+      System.out.println("\n\nYour number is too high, try again.");
+    }
+
+
+    }
+
+    return ans; // Meant to be used by algorithm
+
+  }
+
+
+  public static int MaxYear(){ //Gets the Maximum year that the user would like the series
+
+  Scanner scan = new Scanner(System.in); // Sets up Scanner
+
+  String complete = "n"; //Tells the program when to stop asking
+  int ans = 0; // What the user wants from the program
+
+  while(!(complete.equalsIgnoreCase("y"))){ // Meant to repeat until the user is fine with their decision
+
+   ans = validateNumber("\n\nTo start enter the minimum year you wish the series would have been created to fit your liking.\n\n-- Enter 0 if you do not have a preference. --");
+
+   complete = validateYes("\nAre you happy entering: " + ans + "? Enter [Y] or [N]");
+
+    if(ans == 0){ // Meant to change it if they don't care about the max
+
+      ans = 9999;
+
+    }
+
+  }
+    
+  return ans; // Meant to be used by algorithm
+    
+}
+
+
+  public static int Imdb(){ //Gets the Imdb score that the user would like
+
+    Scanner scan = new Scanner(System.in); // Sets up Scanner
+
+    String complete = "n"; //Tells the program when to stop asking
+    int ans = 0; // What the user wants from the program
+
+    while(!(complete.equalsIgnoreCase("y"))){ // Meant to repeat until the user is fine with their decision
+
+     ans = validateNumber("\n\nTo start enter the minimum Imdb score (From 0 to 10) you wish the series would have been created to fit your liking.\n\n-- Enter 0 if you do not have a preference. --");
+
+     complete = validateYes("\nAre you happy entering: " + ans + "? Enter [Y] or [N]");
+
+     if(ans > 10){
+       complete = "n";
+       System.out.print("\nYour number is too high. Please try again.");
+     }
+      else if(ans < 0){
+
+        complete = "n";
+        System.out.print("\nYour number is too low. Please try again.");
+
+      } 
+
+    }
+    
+    return ans; // Meant to be used by algorithm
+  }
+
+      // End of Main Brains
+
+      // Supports for main brain methods to keep them working
+
+  public static String validateYes(String prompt){ // Meant to ensure that the user entered Y or N
+
+    String yesOrNo;
+    Scanner scan = new Scanner(System.in);
+
+    System.out.println(prompt);
+
+    yesOrNo = scan.nextLine();
+
+    while(!(yesOrNo.equalsIgnoreCase("Y") || yesOrNo.equalsIgnoreCase("N")))
+    {
+
+      System.out.println("\nPlease enter [Y] or [N]");
+      System.out.println("\nTry again. " + prompt);
+      yesOrNo = scan.nextLine();
+
+    }
+
+    return yesOrNo;
+
+  }
+
+      // Start of Supports (for main brain methods to keep them working)
+
+  public static int validateNumber(String prompt){
+   // Meant to ensure that a real number was given by the user  
+    int number = 0;
+    Scanner scan = new Scanner(System.in);
+
+    System.out.println(prompt);
+
+    while(!scan.hasNextInt())
+    {
+      System.out.println("\nPlease enter a valid number");
+      scan.next();
+      System.out.println("\nTry again. " + prompt);
+
+    }
+
+    number = scan.nextInt();    
+
+    return number;
+
+  }
+
+  public static String giveAgeRatings(String ans){ // If user needs ratings information this gives it
+
+    Scanner scan = new Scanner(System.in); // Sets up Scanner
+
+    if(ans.equals("?")){
+
+      System.out.println("-- Age Ratings --\n\nPG\nTv-14\nTv-MA\n\n-- Age Ratings -- \n\nNow, Please enter one of these age ratings.");
+
+      ans = scan.nextLine();
+
+    } 
+
+    return ans;
+
+  }
+
+  public static String giveGenres(String ans){ // If user needs Genre info
+
+    Scanner scan = new Scanner(System.in); // Sets up Scanner
+
+    if(ans.equals("?")){
+
+      System.out.println("-- Genres --\n\nAction\nAdventure\nComedy\nDark Comedy\nDramedy\nThriller\nRomance\n\n-- Genres -- \n\nNow, Please enter one of these genres."); // List of all Genres
+
+      ans = scan.nextLine();
+
+    } 
+
+    return ans;
+
+  }
+
+     // End of supports
+
+
+  // End of Brain Methods
+
+
+}
