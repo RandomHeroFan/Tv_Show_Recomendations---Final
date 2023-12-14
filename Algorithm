@@ -146,7 +146,7 @@ class Algorithm{
 
   while(!(complete.equalsIgnoreCase("y"))){ // Meant to repeat until the user is fine with their decision
 
-   ans = validateNumber("\n\nTo start enter the minimum year you wish the series would have been created to fit your liking.\n\n-- Enter 0 if you do not have a preference. --");
+   ans = validateNumber("\n\nTo start enter the maximum year you wish the series would have been created to fit your liking.\n\n-- Enter 0 if you do not have a preference. --");
 
    complete = validateYes("\nAre you happy entering: " + ans + "? Enter [Y] or [N]");
 
