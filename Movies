@@ -1,0 +1,122 @@
+import java.util.Scanner;
+import java.text.*;
+
+class Movies{ // Was originally meant to feature movies I'd seen but was switched into Tv-Shows but it was too late to change the class name
+  
+  // Instance Variables
+  
+    private String title; // Title of tv show
+    private String genre; // Can only be one main Genre
+    private String creator; // Person credited as the creator of the show
+    private String ageRating; // Pg, Tv-14, Tv-MA, etc.
+    private int year; // The year of the first episode;
+    private double imdbRating; // The score on imdb
+    private String authRecc; // Whether I'd reccomend the series or not
+    
+  // End of Instance Variables
+
+  // Constructors (Blueprint)
+
+    // Zero arg constructor
+
+      public Movies(){
+
+        title      = "";
+        genre      = "";
+        creator    = "";
+        ageRating  = "";
+        year       = 0;
+        imdbRating = 0.0;
+        authRecc   = "";
+        
+      }
+  
+    // End of Zero arg constructor
+
+  public Movies(String Title, String Genre, String Creator, String AgeRating, int Year, double ImdbRating, String AuthRecc){
+
+    this.title       = Title;
+    this.genre       = Genre;
+    this.creator     = Creator;
+    this.ageRating   = AgeRating;
+    this.year        = Year;
+    this.imdbRating  = ImdbRating;
+    this.authRecc    = AuthRecc;
+    
+  }
+  
+  // End of Constructors
+
+
+  // toString
+
+  public String toString(){
+
+  String result = "Tv Show: " + title 
+                   + "\nGenre - " + genre
+                   + "\nCreator - " + creator
+                   + "\nAge Rating - " + ageRating
+                   + "\nYear - " + year
+                   + "\nIMDB Rating - " + imdbRating
+                   + "\nApp Creator's Reccomendation - " + authRecc;
+
+  return result;
+    
+  }
+  
+  // End of toString
+
+
+  // Getters && Setters
+
+      // Getters
+
+      public String getAgeRatings(){
+
+        return ageRating;
+        
+      }
+
+      public String getGenres(){
+
+        return genre;
+    
+      }
+
+      public int getYear(){
+
+         return year;     
+    
+      }
+
+      public double getImdbRating(){
+
+          return imdbRating;
+        
+      }
+
+      public String getAuthRecc(){
+
+        return authRecc;
+
+      }
+
+      public String getTitle(){
+
+        return title;
+
+      }
+  
+  
+      // End of Getters
+
+  // End of Getters && Setters
+
+
+  // Brain Methods
+
+
+      // Main Brains
+  
+  
+}
